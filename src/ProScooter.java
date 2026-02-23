@@ -1,6 +1,4 @@
 public class ProScooter extends Arac implements ISarjEdilebilir{
-    private final int acilisUcreti = 10;
-    private final int dkBasiUcret = 4;
     private final int maxHiz = 50;
 
     public ProScooter(String aracId, int sarjYuzdesi, String konum, AracDurumu durum) {
@@ -10,7 +8,9 @@ public class ProScooter extends Arac implements ISarjEdilebilir{
 
     @Override
     public double ucretHesapla(int dakika){
-        return ((dkBasiUcret*dakika) + acilisUcreti);
+        int dkBasiUcret = 4;
+        int acilisUcreti = 10;
+        return ((dkBasiUcret *dakika) + acilisUcreti);
     }
 
 

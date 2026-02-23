@@ -20,13 +20,14 @@ public class VeriTabaniYoneticisi {
 
 
     public static void tabloOLustur(){
-        String sql = "CREATE TABLE IF NOT EXISTS araclar (\n"
-                + "arac_id TEXT PRIMARY KEY,\n"
-                + "tip TEXT NOT NULL,\n"
-                + "sarj_yuzdesi INTEGER NOT NULL,\n"
-                + "konum TEXT NOT NULL,\n"
-                +  "durum TEXT NOT NULL\n"
-                + ");";
+        String sql = """
+                CREATE TABLE IF NOT EXISTS araclar (
+                arac_id TEXT PRIMARY KEY,
+                tip TEXT NOT NULL,
+                sarj_yuzdesi INTEGER NOT NULL,
+                konum TEXT NOT NULL,
+                durum TEXT NOT NULL
+                );""";
 
         try (Connection connection = baglan();
             Statement statement = connection.createStatement()){
@@ -72,6 +73,27 @@ public class VeriTabaniYoneticisi {
 
 
         return dbAraclar;
+    }
+
+
+
+    public static void durumGuncelle(String id,AracDurumu yeniDurum){
+        String sql = "UPDATE araclar SET durum = ? WHERE arac_id = ?";
+
+        try (Connection connection = baglan();
+             PreparedStatement pstmt = connection.prepareStatement(sql)){
+
+            pstmt.setString(1, yeniDurum.name());
+            pstmt.setString(2,id);
+
+            pstmt.executeUpdate();
+
+        }
+        catch (SQLException e){
+            System.err.println("Güncelleme hatası: " + e.getMessage());
+        }
+
+
     }
 
 

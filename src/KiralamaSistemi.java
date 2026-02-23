@@ -47,6 +47,7 @@ public class KiralamaSistemi{
             if (a.aracId.equalsIgnoreCase(id)){
                 if(a.getSarjYuzdesi() < 20){
                     a.setDurum(AracDurumu.SARJI_YETERSIZ);
+                    VeriTabaniYoneticisi.durumGuncelle(a.getAracId(), AracDurumu.SARJI_YETERSIZ);
                     throw new YetersizSarjException("Aracın şarjı %20'nin altında, kiralanamaz!");
                 }
                 if(a.getDurum() == AracDurumu.MUSAIT){
@@ -54,6 +55,7 @@ public class KiralamaSistemi{
                     System.out.print("Ücret : " + a.ucretHesapla(sure));
                     System.out.println();
                     a.setDurum(AracDurumu.KIRADA);
+                    VeriTabaniYoneticisi.durumGuncelle(a.getAracId(), AracDurumu.KIRADA);
                 }
                 else {
                     System.out.println("Hata : " + a.getDurum());
@@ -97,25 +99,6 @@ public class KiralamaSistemi{
         System.out.println("girilen id ye sahip araç bulunamadı!");
         return false;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
