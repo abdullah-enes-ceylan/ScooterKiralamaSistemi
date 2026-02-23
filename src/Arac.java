@@ -2,13 +2,13 @@ public abstract class Arac implements ISarjEdilebilir{
     protected String aracId;
     protected int sarjYuzdesi;
     protected String konum;
-    private boolean kiradaMi;
+    private AracDurumu durum;
 
-    public Arac(String aracId, int sarjYuzdesi, String konum, boolean kiradaMi) {
+    public Arac(String aracId, int sarjYuzdesi, String konum, AracDurumu durum) {
         this.aracId = aracId;
         this.sarjYuzdesi = sarjYuzdesi;
         this.konum = konum;
-        this.kiradaMi = kiradaMi;
+        this.durum = durum;
     }
 
     public abstract double ucretHesapla(int dakika);
@@ -38,14 +38,11 @@ public abstract class Arac implements ISarjEdilebilir{
         this.konum = konum;
     }
 
-    public boolean KiradaMi() {
-        return kiradaMi;
+    public AracDurumu getDurum() {
+        return durum;
     }
 
-    public void setKiradaMi(boolean kiradaMi) {
-        this.kiradaMi = kiradaMi;
+    public void setDurum(AracDurumu durum) {
+        this.durum = durum;
     }
-
-
-
 }

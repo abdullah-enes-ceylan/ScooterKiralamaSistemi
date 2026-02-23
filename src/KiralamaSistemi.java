@@ -14,11 +14,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class KiralamaSistemi{
-    List<Arac> araclar = new ArrayList<>();
+    List<Arac> araclar = VeriTabaniYoneticisi.verileriYukle();
 
 
     public void aracEkle(Arac arac){
-        String sql = "INSERT INTO araclar(arac_id, tip, sarj_yuzdesi, konum, kirada_mi) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO araclar(arac_id, tip, sarj_yuzdesi, konum, durum) VALUES(?,?,?,?,?)";
 
 
         try (Connection connection = VeriTabaniYoneticisi.baglan();
@@ -29,7 +29,8 @@ public class KiralamaSistemi{
             pstmt.setString(2, (arac instanceof ProScooter)? "Pro" : "Standart");
             pstmt.setInt(3, arac.sarjYuzdesi);
             pstmt.setString(4, arac.getKonum());
-            pstmt.setBoolean(5, arac.KiradaMi());
+            pstmt.setString(5,arac.getDurum().name());
+
 
             pstmt.executeUpdate();
             System.out.println("Araç veritabanına kaydedildi");
@@ -45,16 +46,17 @@ public class KiralamaSistemi{
         for (Arac a : araclar){
             if (a.aracId.equalsIgnoreCase(id)){
                 if(a.getSarjYuzdesi() < 20){
-                    throw new YetersizSarjException("Hata : Aracın şarjı çok düşük");
+                    a.setDurum(AracDurumu.SARJI_YETERSIZ);
+                    throw new YetersizSarjException("Aracın şarjı %20'nin altında, kiralanamaz!");
                 }
-                if(!a.KiradaMi()){
+                if(a.getDurum() == AracDurumu.MUSAIT){
                     System.out.println("Araç kiralandı");
                     System.out.print("Ücret : " + a.ucretHesapla(sure));
                     System.out.println();
-                    a.setKiradaMi(true);
+                    a.setDurum(AracDurumu.KIRADA);
                 }
                 else {
-                    System.out.println("Hata : Araç zaten kirada");
+                    System.out.println("Hata : " + a.getDurum());
                 }
                 return;
             }
@@ -81,8 +83,9 @@ public class KiralamaSistemi{
     public boolean musaitlikSorgulama(String id){
         for (Arac arac : araclar){
             if (arac.aracId.equalsIgnoreCase(id)){
-                if (arac.KiradaMi() || arac.getSarjYuzdesi() < 20){
+                if (arac.getDurum() != AracDurumu.MUSAIT || arac.getSarjYuzdesi() < 20){
                     System.out.println("Araç şuan müsait değil");
+                    System.out.println("Durum: " + arac.getDurum());
                     return false;
                 }
                 else{

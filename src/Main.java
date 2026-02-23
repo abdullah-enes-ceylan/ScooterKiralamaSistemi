@@ -33,13 +33,13 @@ public class Main {
                     if(tur == 1){
                         id = inputString(scanner, "Araç ID : ");
                         if (sistem.idKontrol(id)){break;}
-                        sistem.aracEkle(new StandartScooter(id,100,"Merkez",false));
+                        sistem.aracEkle(new StandartScooter(id,100,"Merkez",AracDurumu.MUSAIT));
                         System.out.println("Araç başarıyla eklendi");
                     }
                     else if (tur == 2) {
                         id = inputString(scanner, "Araç ID : ");
                         if (sistem.idKontrol(id)){break;}
-                        sistem.aracEkle(new ProScooter(id,100,"Merkez",false));
+                        sistem.aracEkle(new ProScooter(id,100,"Merkez",AracDurumu.MUSAIT));
                         System.out.println("Araç başarıyla eklendi");
                     }
                     else{

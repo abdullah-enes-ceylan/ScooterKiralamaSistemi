@@ -2,8 +2,8 @@ public class StandartScooter extends Arac implements ISarjEdilebilir{
     private int acilisUcreti = 5;
     private int dkBasiUcret = 2;
     private final int maxHiz = 30;
-    public StandartScooter(String aracId, int sarjYuzdesi, String konum, boolean kiradaMi) {
-        super(aracId, sarjYuzdesi, konum, kiradaMi);
+    public StandartScooter(String aracId, int sarjYuzdesi, String konum, AracDurumu durum) {
+        super(aracId, sarjYuzdesi, konum, durum);
     }
 
 
@@ -25,6 +25,8 @@ public class StandartScooter extends Arac implements ISarjEdilebilir{
         return "StandartScooter " +
                 "aracId = '" + aracId + '\'' +
                 ", sarjYuzdesi = " + sarjYuzdesi +
-                ", konum = '" + konum + '\'';
+                ", konum = '" + konum + '\'' +
+                ", durum = " + super.getDurum();
+
     }
 }

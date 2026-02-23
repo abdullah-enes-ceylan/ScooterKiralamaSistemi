@@ -1,4 +1,7 @@
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
 
 
 public class VeriTabaniYoneticisi {
@@ -22,7 +25,7 @@ public class VeriTabaniYoneticisi {
                 + "tip TEXT NOT NULL,\n"
                 + "sarj_yuzdesi INTEGER NOT NULL,\n"
                 + "konum TEXT NOT NULL,\n"
-                +  "kirada_mi BOOLEAN NOT NULL\n"
+                +  "durum TEXT NOT NULL\n"
                 + ");";
 
         try (Connection connection = baglan();
@@ -35,6 +38,44 @@ public class VeriTabaniYoneticisi {
             System.err.println("Tablo oluşturma hatası : " + e.getMessage());
         }
     }
+
+    public static List<Arac> verileriYukle(){
+        List<Arac> dbAraclar = new ArrayList<>();
+        String sql = "SELECT * FROM araclar";
+
+        try (Connection connection = baglan();
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)){
+
+            while (rs.next()) {
+                String id = rs.getString("arac_id");
+                String tip = rs.getString("tip");
+                int sarj = rs.getInt("sarj_yuzdesi");
+                String konum = rs.getString("konum");
+
+                String durumStr = rs.getString("durum");
+                AracDurumu durumEnum = AracDurumu.valueOf(durumStr);
+
+                if (tip.equals("Pro")) {
+                    dbAraclar.add(new ProScooter(id, sarj, konum, durumEnum));
+                } else {
+                    dbAraclar.add(new StandartScooter(id, sarj, konum, durumEnum));
+                }
+            }
+            System.out.println("Veritabanı kayıtları başarıyla okundu!");
+
+        }
+        catch (SQLException e){
+            System.err.println("Database yüklenirken hata oluştur: " + e.getMessage());
+        }
+
+
+
+        return dbAraclar;
+    }
+
+
+
 }
 
 
