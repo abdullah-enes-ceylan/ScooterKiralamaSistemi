@@ -78,4 +78,9 @@ public class KiralamaSistemi {
         }
         return false;
     }
+
+
+    public Arac getArac(String id) {
+        return araclar.get(id);
+    }
 }
