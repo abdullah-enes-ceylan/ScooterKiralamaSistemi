@@ -1,5 +1,4 @@
-public class StandartScooter extends Arac implements ISarjEdilebilir{
-    private final int maxHiz = 30;
+public class StandartScooter extends Arac{
     public StandartScooter(String aracId, int sarjYuzdesi, String konum, AracDurumu durum) {
         super(aracId, sarjYuzdesi, konum, durum);
     }
@@ -14,17 +13,9 @@ public class StandartScooter extends Arac implements ISarjEdilebilir{
 
 
     @Override
-    public void sarjEt() {
-        super.setSarjYuzdesi(100);
-        System.out.println("Araç şarj edildi");
-    }
-
-
-    @Override
     public String getAracTipi(){
         return "Standart";
     }
-
 
 
 

@@ -29,16 +29,19 @@ public class KiralamaSistemi {
             return;
         }
 
+
+        if (a.getDurum() != AracDurumu.MUSAIT) {
+            System.out.println("Hata : Araç şu an müsait değil (" + a.getDurum() + ")");
+            return;
+        }
+
         if (a.getSarjYuzdesi() < MIN_SARJ_SINIRI) {
             a.setDurum(AracDurumu.SARJI_YETERSIZ);
             veriKaynagi.durumGuncelle(a.getAracId(), AracDurumu.SARJI_YETERSIZ);
             throw new YetersizSarjException("Aracın şarjı sınırın altında, kiralanamaz!");
         }
 
-        if (a.getDurum() != AracDurumu.MUSAIT) {
-            System.out.println("Hata : Araç şu an müsait değil (" + a.getDurum() + ")");
-            return;
-        }
+
 
         System.out.println("Araç kiralandı. Ücret : " + a.ucretHesapla(sure));
         a.setDurum(AracDurumu.KIRADA);

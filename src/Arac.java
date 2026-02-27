@@ -47,4 +47,10 @@ public abstract class Arac implements ISarjEdilebilir{
     public void setDurum(AracDurumu durum) {
         this.durum = durum;
     }
+
+    public void sarjEt() {
+        setSarjYuzdesi(100);
+        System.out.println("Araç şarj edildi");
+    }
+
 }

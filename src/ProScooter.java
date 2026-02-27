@@ -1,5 +1,4 @@
-public class ProScooter extends Arac implements ISarjEdilebilir{
-    private final int maxHiz = 50;
+public class ProScooter extends Arac{
 
     public ProScooter(String aracId, int sarjYuzdesi, String konum, AracDurumu durum) {
         super(aracId, sarjYuzdesi, konum, durum);
@@ -14,12 +13,6 @@ public class ProScooter extends Arac implements ISarjEdilebilir{
     }
 
 
-
-    @Override
-    public void sarjEt() {
-        super.setSarjYuzdesi(100);
-        System.out.println("Araç şarj edildi");
-    }
 
     @Override
     public String getAracTipi(){

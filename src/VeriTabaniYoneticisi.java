@@ -8,6 +8,17 @@ public class VeriTabaniYoneticisi implements IVeriKaynagi {
     private static final String URL = "jdbc:sqlite:scooters.db";
     private static Connection tekilBaglanti = null;
 
+
+    private static VeriTabaniYoneticisi instance = null;
+    private VeriTabaniYoneticisi(){};
+
+    public static VeriTabaniYoneticisi getInstance() {
+        if (instance == null) {
+            instance = new VeriTabaniYoneticisi();
+        }
+        return instance;
+    }
+
     // Veritabanı nesnesi dışarıdan üretilemez
 
     public static Connection getBaglanti() {
