@@ -127,3 +127,63 @@ public class VeriTabaniYoneticisi implements IVeriKaynagi{
 
 
 
+    /*
+    public void verileriKaydet() {
+        JsonArray jsonList = new JsonArray();
+
+        for (Arac a : araclar){
+            JsonObject jsonObject = new JsonObject();
+
+            jsonObject.addProperty("model", (a instanceof ProScooter)? "Pro" : "Standart");
+            jsonObject.addProperty("id", a.getAracId());
+            jsonObject.addProperty("sarj", a.getSarjYuzdesi());
+            jsonObject.addProperty("konum", a.getKonum());
+            jsonObject.addProperty("kiradaMi", a.KiradaMi());
+
+
+            jsonList.add(jsonObject);
+        }
+
+        try (FileWriter fileWriter = new FileWriter("scooters.json")){
+            fileWriter.write(jsonList.toString());
+            System.out.println("veriler başarıyla json dosyasına kaydedildi");
+        }
+        catch (IOException e){
+            System.err.println("Kaydetme hatası : " + e.getMessage());
+        }
+    }
+    */
+
+
+    /*
+    public void verileriYukle(){
+        File file = new File("scooters.json");
+        if(!file.exists()) return;
+
+        try (FileReader reader  = new FileReader(file)){
+            JsonArray jsonList = JsonParser.parseReader(reader).getAsJsonArray();
+
+            for (JsonElement eleman : jsonList){
+                JsonObject aracJson = eleman.getAsJsonObject();
+
+                String tip = aracJson.get("model").getAsString();
+                String id = aracJson.get("id").getAsString();
+                int sarj = aracJson.get("sarj").getAsInt();
+                String konum = aracJson.get("konum").getAsString();
+                boolean kiradaMi = aracJson.get("kiradaMi").getAsBoolean();
+
+                if(tip.equals("Pro")){
+                    araclar.add(new ProScooter(id,sarj,konum,kiradaMi));
+                }
+                else {
+                    araclar.add(new StandartScooter(id,sarj,konum,kiradaMi));
+                }
+            }
+        }
+        catch (IOException e){
+            System.out.println("Yükleme hatası : " + e.getMessage());
+
+        }
+    }
+    */
+

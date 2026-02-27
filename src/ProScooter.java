@@ -17,7 +17,7 @@ public class ProScooter extends Arac implements ISarjEdilebilir{
 
     @Override
     public void sarjEt() {
-        super.sarjYuzdesi = 100;
+        super.setSarjYuzdesi(100);
         System.out.println("Araç şarj edildi");
     }
 
@@ -32,9 +32,9 @@ public class ProScooter extends Arac implements ISarjEdilebilir{
     @Override
     public String toString() {
         return "ProScooter " +
-                "aracId = '" + aracId + '\'' +
-                ", sarjYuzdesi = " + sarjYuzdesi +
-                ", konum = '" + konum + '\'' +
+                "aracId = '" + getAracId() + '\'' +
+                ", sarjYuzdesi = " + getSarjYuzdesi() +
+                ", konum = '" + getKonum() + '\'' +
                 ", durum = " + super.getDurum();
     }
 }

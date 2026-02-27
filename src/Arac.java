@@ -1,7 +1,7 @@
 public abstract class Arac implements ISarjEdilebilir{
-    protected String aracId;
-    protected int sarjYuzdesi;
-    protected String konum;
+    private String aracId;
+    private int sarjYuzdesi;
+    private String konum;
     private AracDurumu durum;
 
     public Arac(String aracId, int sarjYuzdesi, String konum, AracDurumu durum) {
