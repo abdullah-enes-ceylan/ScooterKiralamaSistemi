@@ -1,12 +1,7 @@
 public class Main {
     public static void main(String[] args) {
-
-        IVeriKaynagi veriTabani = VeriTabaniYoneticisi.getInstance();
-        veriTabani.tabloOlustur();
-
-        KiralamaSistemi sistem = new KiralamaSistemi(veriTabani);
-
-        KullaniciArayuzu arayuz = new KullaniciArayuzu(sistem);
+        KiralamaFacade facade = new KiralamaFacade();
+        KullaniciArayuzu arayuz = new KullaniciArayuzu(facade);
         arayuz.baslat();
     }
 }

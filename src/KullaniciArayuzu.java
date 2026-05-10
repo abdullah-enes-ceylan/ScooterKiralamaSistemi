@@ -2,10 +2,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class KullaniciArayuzu {
-    private final KiralamaSistemi sistem;
+    private final KiralamaFacade sistem;
     private final Scanner scanner;
 
-    public KullaniciArayuzu(KiralamaSistemi sistem) {
+    public KullaniciArayuzu(KiralamaFacade sistem) {
         this.sistem = sistem;
         this.scanner = new Scanner(System.in);
     }
