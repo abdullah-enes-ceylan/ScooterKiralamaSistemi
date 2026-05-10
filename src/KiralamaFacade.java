@@ -6,6 +6,8 @@ public class KiralamaFacade {
 		IVeriKaynagi veriTabani = VeriTabaniYoneticisi.getInstance();
 		veriTabani.tabloOlustur();
 		this.kiralamaSistemi = new KiralamaSistemi(veriTabani);
+		kiralamaSistemi.gozlemciEkle(new SarjUyariGozlemcisi());
+		kiralamaSistemi.gozlemciEkle(new KiralamaLogGozlemcisi());
 	}
 
 	public void aracEkle(Arac arac) {

@@ -1,26 +1,20 @@
-public class ProScooter extends Arac{
+public class ProScooter extends Arac {
+    private final FiyatlandirmaStratejisi fiyatlandirma;
 
     public ProScooter(String aracId, int sarjYuzdesi, String konum, AracDurumu durum) {
         super(aracId, sarjYuzdesi, konum, durum);
+        this.fiyatlandirma = new ProFiyatlandirma();
     }
 
-
     @Override
-    public double ucretHesapla(int dakika){
-        int dkBasiUcret = 4;
-        int acilisUcreti = 10;
-        return ((dkBasiUcret *dakika) + acilisUcreti);
+    public double ucretHesapla(int dakika) {
+        return fiyatlandirma.ucretHesapla(dakika);
     }
 
-
-
     @Override
-    public String getAracTipi(){
+    public String getAracTipi() {
         return "Pro";
     }
-
-
-
 
     @Override
     public String toString() {
@@ -28,6 +22,6 @@ public class ProScooter extends Arac{
                 "aracId = '" + getAracId() + '\'' +
                 ", sarjYuzdesi = " + getSarjYuzdesi() +
                 ", konum = '" + getKonum() + '\'' +
-                ", durum = " + super.getDurum();
+                ", durum = " + getDurum();
     }
 }

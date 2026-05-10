@@ -1,7 +1,10 @@
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class KiralamaSistemi {
-
+    private final List<KiralamaGozlemcisi> gozlemciler = new ArrayList<>();
     private static final int MIN_SARJ_SINIRI = 10;
     private final IVeriKaynagi veriKaynagi;
     private final Map<String, Arac> araclar;
@@ -44,6 +47,7 @@ public class KiralamaSistemi {
 
 
         System.out.println("Araç kiralandı. Ücret : " + a.ucretHesapla(sure));
+        gozlemcileriHaberdar(a, sure);
         a.setDurum(AracDurumu.KIRADA);
         veriKaynagi.durumGuncelle(a.getAracId(), AracDurumu.KIRADA);
     }
@@ -82,5 +86,15 @@ public class KiralamaSistemi {
 
     public Arac getArac(String id) {
         return araclar.get(id);
+    }
+
+    public void gozlemciEkle(KiralamaGozlemcisi gozlemci) {
+        gozlemciler.add(gozlemci);
+    }
+
+    private void gozlemcileriHaberdar(Arac arac, int sure) {
+        for (KiralamaGozlemcisi g : gozlemciler) {
+            g.kiralamaGerceklesti(arac, sure);
+        }
     }
 }
