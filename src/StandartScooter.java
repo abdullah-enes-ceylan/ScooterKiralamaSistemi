@@ -1,23 +1,20 @@
-public class StandartScooter extends Arac{
+public class StandartScooter extends Arac {
+    private final FiyatlandirmaStratejisi fiyatlandirma;
+
     public StandartScooter(String aracId, int sarjYuzdesi, String konum, AracDurumu durum) {
         super(aracId, sarjYuzdesi, konum, durum);
+        this.fiyatlandirma = new StandartFiyatlandirma();
     }
 
-
     @Override
-    public double ucretHesapla(int dakika){
-        int dkBasiUcret = 2;
-        int acilisUcreti = 5;
-        return ((dkBasiUcret *dakika) + acilisUcreti);
+    public double ucretHesapla(int dakika) {
+        return fiyatlandirma.ucretHesapla(dakika);
     }
 
-
     @Override
-    public String getAracTipi(){
+    public String getAracTipi() {
         return "Standart";
     }
-
-
 
     @Override
     public String toString() {
@@ -25,7 +22,6 @@ public class StandartScooter extends Arac{
                 "aracId = '" + getAracId() + '\'' +
                 ", sarjYuzdesi = " + getSarjYuzdesi() +
                 ", konum = '" + getKonum() + '\'' +
-                ", durum = " + super.getDurum();
-
+                ", durum = " + getDurum();
     }
 }
